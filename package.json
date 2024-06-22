@@ -1,0 +1,10 @@
+{
+  "name": "ai-teacher",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix client\" \"npm start --prefix server\""
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
