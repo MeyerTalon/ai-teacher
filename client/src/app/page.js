@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: "../.env" })
 
 export default async function Page() {
-  var accessToken = await fetchAccessToken({
+  const accessToken = await fetchAccessToken({
     apiKey: String(process.env.HUME_API_KEY),
     secretKey: String(process.env.HUME_SECRET_KEY),
   });

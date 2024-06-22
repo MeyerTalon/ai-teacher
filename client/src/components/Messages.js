@@ -3,8 +3,8 @@
 import { useVoice } from "@humeai/voice-react";
 
 export default function Messages() {
-    var voice = useVoice();
-    var messages = voice.messages;
+    const voice = useVoice();
+    const messages = voice.messages;
 
     return (
         <div>

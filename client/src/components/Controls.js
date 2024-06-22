@@ -3,10 +3,10 @@
 import { useVoice, VoiceReadyState } from "@humeai/voice-react";
 
 export default function Controls() {
-    var voice = useVoice();
-    var connect = voice.connect;
-    var disconnect = voice.disconnect;
-    var readyState = voice.readyState;
+    const voice = useVoice();
+    const connect = voice.connect;
+    const disconnect = voice.disconnect;
+    const readyState = voice.readyState;
 
     if (readyState === VoiceReadyState.OPEN) {
         return (
