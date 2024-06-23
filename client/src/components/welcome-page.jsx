@@ -50,7 +50,7 @@ export function WelcomePage() {
 
             if (response.ok) {
                 console.log('User data submitted successfully');
-                router.push('/modules'); // Navigate to the next page after successful submission
+                 // Navigate to the next page after successful submission
             } else {
                 console.error('Error submitting user data:', response.statusText);
             }

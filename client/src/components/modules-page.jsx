@@ -25,8 +25,13 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 import Link from "next/link"
 import {XIcon} from "lucide-react";
+import {useRouter} from "next/navigation";
 
 export function ModulesPage() {
+  const router = useRouter();
+  const openLesson = async (e) => {
+    router.push('/lessonpage');
+  };
   return (
     (<section
         className="min-h-screen bg-gradient-to-br from-[#3E196E] to-[#D46C76] flex flex-col items-center justify-center">
@@ -51,13 +56,12 @@ export function ModulesPage() {
               </div>
             </div>
             <p className="text-sm font-medium mt-2">25 Points</p>
-            <Link
-                href="#"
+            <Button
                 className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#EF4444] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#DC2626] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                prefetch={false}
+                onClick={openLesson}
             >
               Start Learning
-            </Link>
+            </Button>
           </div>
           <div
               className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up delay-100">
