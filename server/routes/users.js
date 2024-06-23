@@ -17,6 +17,16 @@ router.post('/', async (req, res) => {
         geometryShapes: 1
     };
 
+    const defaultPoints = {
+        addition: 0,
+        subtraction: 0,
+        multiplication: 0,
+        division: 0,
+        fractionsDecimalsPercents: 0,
+        geometryShapes: 0
+    };
+
+
     try {
         let user = await User.findOne({ name });
 
@@ -27,7 +37,8 @@ router.post('/', async (req, res) => {
         user = new User({
             name,
             age,
-            levels: defaultLevels
+            levels: defaultLevels,
+            points: defaultPoints
         });
 
         await user.save();
