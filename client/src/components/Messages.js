@@ -15,7 +15,7 @@ export default function Messages() {
 
     useEffect(() => {
         if (messages.length === 2 && !isSendUserInputCalled) {
-            voice.sendUserInput('Give me a single-digit addition question. Once you have finished giving me a question, wait for my answer. If my answer is correct, praise me and then say “lollipop”. If my answer is wrong, tell me the correct answer and give me constructive feedback. Once you are done giving feedback, say “lollipop”');
+            voice.sendUserInput('Give me a single-digit addition question. Once you have finished giving me a question, wait for my answer. If my answer is correct, praise me and then say “lollipop”. If my answer is wrong, tell me the correct answer and give me constructive feedback. Once you are done giving feedback, say “lollipop”. Make sure that even if you are interrupted, you will continue to give feedback and end your response with "lollipop"');
             setSendUserInputCalled(true);
         }
 
