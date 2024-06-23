@@ -27,7 +27,7 @@ To read more about using these font, please visit the Next.js documentation:
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -36,26 +36,59 @@ export function WelcomePage() {
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
 
+    useEffect(() => {
+        const userName = localStorage.getItem('userName');
+        if (userName) {
+            router.push('/modules');
+        }
+    }, [router]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch('http://localhost:3001/api/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, age }),
-            });
+        if (!age) {
+            // Fetch user data from MongoDB if age is not provided
+            try {
+                const response = await fetch(`http://localhost:3001/api/users/${name}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-            if (response.ok) {
-                console.log('User data submitted successfully');
-                router.push('/modules'); // Navigate to the next page after successful submission
-            } else {
-                console.error('Error submitting user data:', response.statusText);
+                if (response.ok) {
+                    const user = await response.json();
+                    localStorage.setItem('userName', user.name);
+                    localStorage.setItem('userAge', user.age);
+                    router.push('/modules');
+                } else {
+                    console.error('Error fetching user data:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
             }
-        } catch (error) {
-            console.error('Error submitting user data:', error);
+        } else {
+            // Create new user if age is provided
+            try {
+                const response = await fetch('http://localhost:3001/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, age }),
+                });
+
+                if (response.ok) {
+                    console.log('User data submitted successfully');
+                    localStorage.setItem('userName', name);
+                    localStorage.setItem('userAge', age);
+                    router.push('/modules');
+                } else {
+                    console.error('Error submitting user data:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error submitting user data:', error);
+            }
         }
     };
   return (
