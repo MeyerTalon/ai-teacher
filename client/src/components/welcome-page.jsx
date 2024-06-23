@@ -23,11 +23,41 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
+"use client";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+
 export function WelcomePage() {
+    const router = useRouter();
+    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('http://localhost:3001/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, age }),
+            });
+
+            if (response.ok) {
+                console.log('User data submitted successfully');
+                router.push('/modules'); // Navigate to the next page after successful submission
+            } else {
+                console.error('Error submitting user data:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error submitting user data:', error);
+        }
+    };
   return (
     (<div
       className="min-h-screen bg-gradient-to-br from-[#3E196E] to-[#D46C76] flex flex-col items-center">
@@ -47,134 +77,139 @@ export function WelcomePage() {
         <h1 className="text-5xl font-bold text-white mb-2">Welcome to t-AILearn!</h1>
         <p className="text-lg text-white text-center">Lets get to know each other!</p>
       </header>
-      <main className="flex-1 flex flex-col items-center  px-4 mt-16">
-        <Card
-          className="max-w-md w-full bg-white rounded-2xl shadow-lg overflow-hidden">
-          <CardHeader className="bg-[#DC9F70] px-6 py-4 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-white">Tell Us About You</h2>
-            <HandIcon className="w-8 h-8 text-white" />
-          </CardHeader>
-          <CardContent className="px-6 py-8">
-            <div className="space-y-4">
-              <div className="relative">
-                <Input
-                  type="text"
-                  placeholder="What's your name?"
-                  className="w-full rounded-full bg-4 px-6 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition-all duration-300" />
-                <UserIcon
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-pink-400" />
-              </div>
-              <div className="relative">
-                <Input
-                  type="number"
-                  placeholder="How old are you?"
-                  className="w-full rounded-full bg-white px-6 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition-all duration-300" />
-                <CakeIcon
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-pink-400" />
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter className="bg-pink-200 px-6 py-4 flex justify-end">
-              <Link href="/modules">
-            <Button
-              type="submit"
-              className="bg-pink-500 text-white px-8 py-2 rounded-full shadow-md hover:bg-pink-600 transition-all duration-300">
-              Let's Go!
-            </Button>
-              </Link>
-          </CardFooter>
-        </Card>
+      <main className="flex-1 flex flex-col items-center px-4 mt-16">
+          <form onSubmit={handleSubmit} className="flex-1 flex flex-col items-center px-4 mt-0">
+              <Card className="max-w-md w-full bg-white rounded-2xl shadow-lg overflow-hidden">
+                  <CardHeader className="bg-[#DC9F70] px-6 py-4 flex items-center justify-between">
+                      <h2 className="text-2xl font-bold text-white">Tell Us About You</h2>
+                      <HandIcon className="w-8 h-8 text-white"/>
+                  </CardHeader>
+                  <CardContent className="px-6 py-8">
+                      <div className="space-y-4">
+                          <div className="relative">
+                              <Input
+                                  type="text"
+                                  placeholder="What's your name?"
+                                  className="w-full rounded-full bg-4 px-6 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition-all duration-300 text-black"
+                                  value={name}
+                                  onChange={(e) => setName(e.target.value)}
+                              />
+                              <UserIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-pink-400"/>
+                          </div>
+                          <div className="relative">
+                              <Input
+                                  type="number"
+                                  placeholder="How old are you?"
+                                  className="w-full rounded-full bg-white px-6 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition-all duration-300 text-black"
+                                  value={age}
+                                  onChange={(e) => setAge(e.target.value)}
+                              />
+                              <CakeIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-pink-400"/>
+                          </div>
+                      </div>
+                  </CardContent>
+                  <CardFooter className="bg-pink-200 px-6 py-4 flex justify-end">
+                      {/*<Link href="/modules">*/}
+                          <Button
+                              type="submit"
+                              className="bg-pink-500 text-white px-8 py-2 rounded-full shadow-md hover:bg-pink-600 transition-all duration-300">
+                              Let's Go!
+                          </Button>
+                      {/*</Link>*/}
+                  </CardFooter>
+              </Card>
+          </form>
       </main>
     </div>)
   );
 }
 
 function CakeIcon(props) {
-  return (
-    (<svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8" />
-      <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1" />
-      <path d="M2 21h20" />
-      <path d="M7 8v3" />
-      <path d="M12 8v3" />
-      <path d="M17 8v3" />
-      <path d="M7 4h0.01" />
-      <path d="M12 4h0.01" />
-      <path d="M17 4h0.01" />
-    </svg>)
-  );
+    return (
+        (<svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/>
+            <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/>
+            <path d="M2 21h20"/>
+            <path d="M7 8v3"/>
+            <path d="M12 8v3"/>
+            <path d="M17 8v3"/>
+            <path d="M7 4h0.01"/>
+            <path d="M12 4h0.01"/>
+            <path d="M17 4h0.01"/>
+        </svg>)
+    );
 }
 
 
 function HandIcon(props) {
-  return (
-    (<svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-      <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-      <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-      <path
-        d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-    </svg>)
-  );
+    return (
+        (<svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+            <path
+                d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+        </svg>)
+    );
 }
 
 
 function SmileIcon(props) {
-  return (
-    (<svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-      <line x1="9" x2="9.01" y1="9" y2="9" />
-      <line x1="15" x2="15.01" y1="9" y2="9" />
-    </svg>)
-  );
+    return (
+        (<svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" x2="9.01" y1="9" y2="9"/>
+            <line x1="15" x2="15.01" y1="9" y2="9"/>
+        </svg>)
+    );
 }
 
 
 function UserIcon(props) {
-  return (
-    (<svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round">
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+    return (
+        (<svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
     </svg>)
   );
