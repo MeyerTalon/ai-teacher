@@ -24,11 +24,11 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
 "use client";
-import Link from "next/link"
-import {XIcon} from "lucide-react";
-import {Button} from "@/components/ui/button";
+import { XIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
 export function ModulesPage() {
   const router = useRouter();
   const [userData, setUserData] = useState(null);
@@ -58,9 +58,14 @@ export function ModulesPage() {
 
     fetchUserData();
   }, [router]);
+
   const handleLogout = () => {
     localStorage.removeItem("userName"); // Clear the user's name from local storage
     router.push("/"); // Redirect to the welcome page
+  };
+
+  const navigateToChatUIPage = () => {
+    router.push("/chatuipage");
   };
 
   if (!userData) {
@@ -79,7 +84,7 @@ export function ModulesPage() {
             Master the fundamentals of mathematics.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-black">
-            <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up ">
+            <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up">
               <div className="bg-[#FEF2F2] rounded-full p-4 mb-4">
                 <PlusIcon className="w-10 h-10 text-[#EF4444]" />
               </div>
@@ -94,13 +99,12 @@ export function ModulesPage() {
                 </div>
               </div>
               <p className="text-sm font-medium mt-2">{points.addition} Points</p>
-              <Link
-                  href="#"
+              <Button
+                  onClick={navigateToChatUIPage}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#EF4444] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#DC2626] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
               >
                 Start Learning
-              </Link>
+              </Button>
             </div>
             <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up delay-100">
               <div className="bg-[#ECFDF5] rounded-full p-4 mb-4">
@@ -117,13 +121,12 @@ export function ModulesPage() {
                 </div>
               </div>
               <p className="text-sm font-medium mt-2">{points.subtraction} Points</p>
-              <Link
-                  href="#"
+              <Button
+                  onClick={navigateToChatUIPage}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#10B981] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#059669] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
               >
                 Start Learning
-              </Link>
+              </Button>
             </div>
             <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up delay-200">
               <div className="bg-[#F0FEFF] rounded-full p-4 mb-4">
@@ -140,13 +143,12 @@ export function ModulesPage() {
                 </div>
               </div>
               <p className="text-sm font-medium mt-2">{points.multiplication} Points</p>
-              <Link
-                  href="#"
+              <Button
+                  onClick={navigateToChatUIPage}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#06B6D4] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#0891B2] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
               >
                 Start Learning
-              </Link>
+              </Button>
             </div>
             <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up delay-300">
               <div className="bg-[#FEF9C3] rounded-full p-4 mb-4">
@@ -163,19 +165,19 @@ export function ModulesPage() {
                 </div>
               </div>
               <p className="text-sm font-medium mt-2">{points.division} Points</p>
-              <Link
-                  href="#"
+              <Button
+                  onClick={navigateToChatUIPage}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#F59E0B] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#D97706] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
               >
                 Start Learning
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
   );
 }
+
 
 function DivideIcon(props) {
   return (
@@ -196,7 +198,6 @@ function DivideIcon(props) {
       </svg>)
   );
 }
-
 
 function MinusIcon(props) {
   return (
@@ -234,8 +235,6 @@ function PlusIcon(props) {
       </svg>)
   );
 }
-
-
 
 function SquareDivideIcon(props) {
   return (
