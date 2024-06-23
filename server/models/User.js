@@ -9,6 +9,32 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    points: {
+        addition: {
+            type: Number,
+            default: 0
+        },
+        subtraction: {
+            type: Number,
+            default: 0
+        },
+        multiplication: {
+            type: Number,
+            default: 0
+        },
+        division: {
+            type: Number,
+            default: 0
+        },
+        fractionsDecimalsPercents: {
+            type: Number,
+            default: 0
+        },
+        geometryShapes: {
+            type: Number,
+            default: 0
+        }
+    },
     levels: {
         addition: {
             type: Number,

@@ -17,7 +17,7 @@ app.prepare().then(() => {
 
     // Define Routes
     server.use('/api/users', require('./routes/users'));
-
+    server.use('/api/points', require('./routes/points'));
     // Handle Next.js pages
     server.all('*', (req, res) => {
         return handle(req, res);
