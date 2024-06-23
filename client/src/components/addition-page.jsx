@@ -14,8 +14,8 @@ export default function AdditionPage() {
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [feedback, setFeedback] = useState("");
 
-    const navigateToChatUIPage = (prompt) => {
-        const query = new URLSearchParams({ prompt }).toString();
+    const navigateToChatUIPage = (prompt, module) => {
+        const query = new URLSearchParams({ prompt, module }).toString();
         router.push(`/chatuipage?${query}`);
     };
     function getRandomInt(min, max) {
@@ -94,7 +94,7 @@ export default function AdditionPage() {
             </div>
             {questionsAnswered >= 5 && (
                 <Button
-                    onClick={() => navigateToChatUIPage('Give me a single-digit addition question.')}
+                    onClick={() => navigateToChatUIPage('Give me a unique and fun addition question. It could be a word problem or a regular number problem.', 'addition')}
                     className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#DC2626] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 >
                     Talk with a Teacher

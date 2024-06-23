@@ -14,6 +14,7 @@ export default function Messages(props) {
     const { prompt } = props.prompt;
     const { module } = props.module;
 
+
     const [isSendUserInputCalled, setSendUserInputCalled] = useState(false);
     const userName = localStorage.getItem('userName');
     const [userData, setUserData] = useState(null);
@@ -125,7 +126,7 @@ export default function Messages(props) {
                     return (
                         <div key={index}
                              className={`mb-4 p-4 rounded-lg ${msg.type === "user_message" ? "bg-green-100" : "bg-blue-100"}`}>
-                            <div className="font-bold mb-2">{msg.message.role}</div>
+                            <div className="font-bold mb-2">{msg.type === "user_message" ? "Student" : "BEARS Teacher"}</div>
                             <div className="whitespace-pre-wrap">{msg.message.content}</div>
                         </div>
                     );

@@ -98,7 +98,7 @@ export default function DivPage() {
             </div>
             {questionsAnswered >= 5 && (
                 <Button
-                    onClick={() => navigateToChatUIPage('Give me a single-digit division question.')}
+                    onClick={() => navigateToChatUIPage('Give me a unique and fun division question. It could be a word problem or a regular number problem.', 'division')}
                     className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#F59E0B] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#D97706] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 >
                     Talk with a Teacher

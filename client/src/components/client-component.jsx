@@ -7,6 +7,7 @@ import Controls from "./controls";
 export default function ClientComponent(props) {
     const prompt = props.prompt;
     const module = props.module;
+
     return (
         <div className="w-full p-4">
             <VoiceProvider

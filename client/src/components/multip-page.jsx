@@ -94,7 +94,7 @@ export default function MultipPage() {
             </div>
             {questionsAnswered >= 5 && (
                 <Button
-                    onClick={() => navigateToChatUIPage('Give me a single-digit multiplication question.')}
+                    onClick={() => navigateToChatUIPage('Give me a unique and fun multiplication question. It could be a word problem or a regular number problem.', 'multiplication')}
                     className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#06B6D4] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#0891B2] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 >
                     Talk with a Teacher
