@@ -17,7 +17,7 @@ router.post('/update', async (req, res) => {
 
         if (correct) {
             user.points[module] += 5; // Add points for correct answer
-        } else {
+        } else if (user.points[module] !== 0){
             user.points[module] -= 2; // Subtract points for wrong answer
         }
 

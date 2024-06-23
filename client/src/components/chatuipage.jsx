@@ -28,17 +28,22 @@ export function ChatuiPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [prompt, setPrompt] = useState('');
+    const [module, setModule] = useState('');
 
     useEffect(() => {
         const promptParam = searchParams.get('prompt');
+        const moduleParam = searchParams.get('module');
         if (promptParam) {
             setPrompt(promptParam);
+        }
+        if (moduleParam) {
+            setModule(moduleParam);
         }
     }, [searchParams]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-black p-4">
-            <ClientComponent prompt={ prompt }/>
+            <ClientComponent prompt={ prompt } module={ module }/>
         </div>
     );
 }

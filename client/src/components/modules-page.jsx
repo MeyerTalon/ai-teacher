@@ -8,10 +8,11 @@ import Image from 'next/image';
 export function ModulesPage() {
   const router = useRouter();
   const [userData, setUserData] = useState(null);
+  const userName = localStorage.getItem("userName");
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const userName = localStorage.getItem("userName");
+
       if (!userName) {
         router.push("/"); // Redirect to welcome page if no userName in local storage
         return;
@@ -58,6 +59,7 @@ export function ModulesPage() {
 
   const navigateToChatUIPage = (prompt) => {
     const query = new URLSearchParams({ prompt }).toString();
+
     router.push(`/chatuipage?${query}`);
   };
 
@@ -77,7 +79,7 @@ export function ModulesPage() {
           </div>
           <h2 className="text-4xl font-bold text-white text-center mb-2 animate-fade-in">Explore Math Subjects</h2>
           <p className="text-lg text-white text-center mb-8 animate-fade-in-delay">
-            Master the fundamentals of mathematics.
+            Hey {userName}, use our interactive lessons to become a master the fundamentals of mathematics!
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-black">
             <div
