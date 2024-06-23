@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const connectDB = require('./db');
+const cors = require('cors');
 require('dotenv').config();
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -9,7 +10,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
     const server = express();
-
+    server.use(cors());
     // Connect to MongoDB
     connectDB();
 

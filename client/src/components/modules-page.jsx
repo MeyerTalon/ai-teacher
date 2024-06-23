@@ -24,6 +24,7 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
 import Link from "next/link"
+import {XIcon} from "lucide-react";
 
 export function ModulesPage() {
   return (
@@ -85,7 +86,7 @@ export function ModulesPage() {
           <div
               className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center animate-fade-in-up delay-200">
             <div className="bg-[#F0FEFF] rounded-full p-4 mb-4">
-              <SquareDivideIcon className="w-10 h-10 text-[#06B6D4]"/>
+              <XIcon className="w-10 h-10 text-[#06B6D4]"/>
             </div>
             <h3 className="text-xl font-bold mb-2">Multiplication</h3>
             <p className="text-muted-foreground text-sm">Discover the power of repeated addition and arrays.</p>
@@ -175,7 +176,6 @@ function MinusIcon(props) {
   );
 }
 
-
 function PlusIcon(props) {
   return (
       (<svg
@@ -194,6 +194,7 @@ function PlusIcon(props) {
       </svg>)
   );
 }
+
 
 
 function SquareDivideIcon(props) {
