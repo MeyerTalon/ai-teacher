@@ -49,5 +49,18 @@ router.post('/', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+router.get('/:name', async (req, res) => {
+    try {
+        const user = await User.findOne({ name: req.params.name });
 
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
 module.exports = router;
