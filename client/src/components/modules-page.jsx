@@ -64,8 +64,9 @@ export function ModulesPage() {
     router.push("/"); // Redirect to the welcome page
   };
 
-  const navigateToChatUIPage = () => {
-    router.push("/chatuipage");
+  const navigateToChatUIPage = (prompt) => {
+    const query = new URLSearchParams({ prompt }).toString();
+    router.push(`/chatuipage?${query}`);
   };
 
   if (!userData) {
@@ -100,7 +101,7 @@ export function ModulesPage() {
               </div>
               <p className="text-sm font-medium mt-2">{points.addition} Points</p>
               <Button
-                  onClick={navigateToChatUIPage}
+                  onClick={() => navigateToChatUIPage('Give me a single-digit addition question.')}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#EF4444] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#DC2626] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               >
                 Start Learning
@@ -122,7 +123,7 @@ export function ModulesPage() {
               </div>
               <p className="text-sm font-medium mt-2">{points.subtraction} Points</p>
               <Button
-                  onClick={navigateToChatUIPage}
+                  onClick={() => navigateToChatUIPage('Give me a single-digit subtraction question.')}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#10B981] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#059669] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               >
                 Start Learning
@@ -144,7 +145,7 @@ export function ModulesPage() {
               </div>
               <p className="text-sm font-medium mt-2">{points.multiplication} Points</p>
               <Button
-                  onClick={navigateToChatUIPage}
+                  onClick={() => navigateToChatUIPage('Give me a single-digit multiplication question.')}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#06B6D4] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#0891B2] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               >
                 Start Learning
@@ -166,7 +167,7 @@ export function ModulesPage() {
               </div>
               <p className="text-sm font-medium mt-2">{points.division} Points</p>
               <Button
-                  onClick={navigateToChatUIPage}
+                  onClick={() => navigateToChatUIPage('Give me a single-digit division question.')}
                   className="mt-4 inline-flex h-9 items-center justify-center rounded-md bg-[#F59E0B] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#D97706] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               >
                 Start Learning

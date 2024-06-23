@@ -15,7 +15,7 @@ export default function Controls() {
                 onClick={() => connect()}
                 className="bg-blue-500 py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300"
             >
-                Start Conversation
+                Start Question
             </button>
         </div>
     );
