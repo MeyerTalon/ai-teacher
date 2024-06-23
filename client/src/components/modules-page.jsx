@@ -78,7 +78,7 @@ export function ModulesPage() {
   return (
       <section className="min-h-screen bg-gradient-to-br from-[#3E196E] to-[#D46C76] flex flex-col items-center justify-center">
         <div className="container px-4 md:px-6">
-          <Button variant="outline" className="animate-fade-in-delay" onClick={handleLogout}>
+          <Button variant="outline" className="animate-fade-in-delay text-white" onClick={handleLogout}>
             Log Out
           </Button>
           <h2 className="text-4xl font-bold text-white text-center mb-2 animate-fade-in">Explore Math Subjects</h2>

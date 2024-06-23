@@ -94,24 +94,25 @@ export function WelcomePage() {
   return (
     (<div
       className="min-h-screen bg-gradient-to-br from-[#3E196E] to-[#D46C76] flex flex-col items-center">
-      <header className="w-full mt-20 flex flex-col items-center">
-        <div className="relative w-64 h-64 mb-8">
-          <img
-            src="/LogoBear.jpeg"
-            width="256"
-            height="256"
-            alt="Friendly Illustration"
-            className="rounded-full" />
-          <div
-            className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-yellow-300 flex items-center justify-center">
-            <SmileIcon className="w-10 h-10 text-yellow-600" />
-          </div>
-        </div>
-        <h1 className="text-5xl font-bold text-white mb-2">Welcome to t-AILearn!</h1>
-        <p className="text-lg text-white text-center">Lets get to know each other!</p>
-      </header>
-      <main className="flex-1 flex flex-col items-center px-4 mt-16">
-          <form onSubmit={handleSubmit} className="flex-1 flex flex-col items-center px-4 mt-0">
+        <header className="w-full mt-20 flex flex-col items-center">
+            <div className="relative w-64 h-64 mb-8">
+                <img
+                    src="/LogoBear.jpeg"
+                    width="256"
+                    height="256"
+                    alt="Friendly Illustration"
+                    className="rounded-full"/>
+                <div
+                    className="absolute bottom-0 right-0 w-16 h-16 rounded-full bg-yellow-300 flex items-center justify-center">
+                    <SmileIcon className="w-10 h-10 text-yellow-600"/>
+                </div>
+            </div>
+            <h1 className="text-4xl font-bold text-white mb-2">Welcome to BEARS!</h1>
+            <p className="text-lg text-white text-center">Building Educational Adventures and Resourceful Studies</p>
+            <p className="text-lg text-white text-center">Lets get to know each other!</p>
+        </header>
+        <main className="flex-1 flex flex-col items-center px-4 mt-16">
+        <form onSubmit={handleSubmit} className="flex-1 flex flex-col items-center px-4 mt-0">
               <Card className="max-w-md w-full bg-white rounded-2xl shadow-lg overflow-hidden">
                   <CardHeader className="bg-[#DC9F70] px-6 py-4 flex items-center justify-between">
                       <h2 className="text-2xl font-bold text-white">Tell Us About You</h2>
