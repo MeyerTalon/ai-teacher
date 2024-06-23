@@ -15,7 +15,7 @@ app.prepare().then(() => {
     connectDB();
 
     server.use(express.json());
-
+    server.use('/_next', express.static('.next'));
     // Define Routes
     server.use('/api/users', require('./routes/users'));
     server.use('/api/points', require('./routes/points'));
