@@ -18,7 +18,7 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
 "use client";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { fetchAccessToken } from "@humeai/voice";
 import { VoiceProvider, useVoice } from "@humeai/voice-react";
@@ -26,10 +26,19 @@ import ClientComponent from "@/components/client-component";
 
 export function ChatuiPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const [prompt, setPrompt] = useState('');
+
+    useEffect(() => {
+        const promptParam = searchParams.get('prompt');
+        if (promptParam) {
+            setPrompt(promptParam);
+        }
+    }, [searchParams]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-black p-4">
-            <ClientComponent />
+            <ClientComponent prompt={ prompt }/>
         </div>
     );
 }
