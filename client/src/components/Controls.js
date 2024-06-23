@@ -15,6 +15,8 @@ export default function Controls() {
             <button
                 onClick={() => {
                     disconnect();
+                    voice.clearMessages();
+                    console.log(voice.messages);
                 }}
             >
                 End Question

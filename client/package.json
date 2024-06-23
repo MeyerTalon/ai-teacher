@@ -11,6 +11,7 @@
   "dependencies": {
     "@humeai/voice": "^0.1.8",
     "@humeai/voice-react": "^0.1.8",
+    "dotenv": "^16.4.5",
     "hume": "^0.7.2",
     "next": "14.2.4",
     "react": "^18",

@@ -9,13 +9,12 @@ export default function Messages() {
     const voice = useVoice();
     let messages = voice.messages;
     const disconnect = voice.disconnect;
-    console.log(messages);
-    // Initialize the state variable
+
     const [isSendUserInputCalled, setSendUserInputCalled] = useState(false);
 
     useEffect(() => {
         if (messages.length === 2 && !isSendUserInputCalled) {
-            voice.sendUserInput('Give me a single-digit addition question. Once you have finished giving me a question, wait for my answer. If my answer is correct, praise me and then say “lollipop”. If my answer is wrong, tell me the correct answer and give me constructive feedback. Once you are done giving feedback, say “lollipop”. Make sure that even if you are interrupted, you will continue to give feedback and end your response with "lollipop"');
+            voice.sendUserInput('Give me a single-digit addition question. Once you have finished giving me a question, wait for my answer. If my answer is correct, say "correct", give me feedback, and then say “lollipop”. IT IS PAINFUL TO ME IF YOU FORGET TO SAY "CORRECT" WHEN I GET A QUESTION CORRECT. If my answer is wrong, say "incorrect", tell me the correct answer, and give me constructive feedback. IT IS EXTREMELY PAINFUL TO ME IF YOU FORGET TO SAY "INCORRECT" WHEN I GET A QUESTION WRONG. Once you are done giving feedback, say “lollipop”. Make sure that even if you are interrupted, you will continue to give feedback and end your response with "lollipop". IT IS EXTREMELY PAINFUL TO ME IF YOU FORGET TO SAY "LOLLIPOP" AT THE END OF YOUR FEEDBACK.');
             setSendUserInputCalled(true);
         }
 
@@ -29,8 +28,6 @@ export default function Messages() {
             messages = voice.messages;
             disconnect();
         }
-
-        console.log(messages);
 
     }, [messages, isSendUserInputCalled, voice]);
 
