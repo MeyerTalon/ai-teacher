@@ -1,4 +1,5 @@
 // ./components/Messages.js
+// cool
 "use client";
 import { useVoice, VoiceReadyState } from "@humeai/voice-react";
 import React, { useState, useEffect } from 'react';
